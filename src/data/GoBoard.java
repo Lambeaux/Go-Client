@@ -71,6 +71,13 @@ public class GoBoard
     }
 
 
+    //  Get the size of the board
+    //  Important for doing external calculations.
+    public int getBoardSize()
+    {
+        return s_boardSize;
+    }
+
     //  Call when the next player has chosen their move
     //  Play order cannot be broken
     public boolean playMove(int i, int j)
@@ -98,7 +105,6 @@ public class GoBoard
         s_isPlayerOneTurn = !s_isPlayerOneTurn;
         return true;
     }
-
 
     //  Render the board
     public void drawBoard(GraphicsContext context)

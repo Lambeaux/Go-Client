@@ -3,6 +3,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class GuiController
 {
@@ -14,9 +15,23 @@ public class GuiController
     private GoBoard goBoard = GoBoard.GetInstance(10);
 
     @FXML
-    void goCanvas_mouseClicked(Event event)
+    void goCanvas_mouseClicked(MouseEvent event)
     {
+        double x = event.getSceneX();
+        double y = event.getSceneY();
 
+        double h = goCanvas.getHeight();
+        double w = goCanvas.getWidth();
+
+        double dh = h / (double)goBoard.getBoardSize();
+        double dw = w / (double)goBoard.getBoardSize();
+
+        int i = (int)x / (int)dw;
+        int j = (int) y / (int)dh;
+
+        goBoard.playMove(i, j);
+
+        goBoard.drawBoard(goCanvas.getGraphicsContext2D());
     }
 
     @FXML
