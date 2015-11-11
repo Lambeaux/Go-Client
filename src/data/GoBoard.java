@@ -31,6 +31,7 @@ public class GoBoard
     }
 
 
+    //  Protected constructors
     protected GoBoard()
     {
         s_boardSize = DEFAULT_SIZE;
@@ -43,6 +44,7 @@ public class GoBoard
     }
 
 
+    //  Get the instance if already created (2 overloads)
     public static GoBoard GetInstance()
     {
         if (_INSTANCE == null)
@@ -55,6 +57,8 @@ public class GoBoard
             _INSTANCE = new GoBoard(boardSize);
         return _INSTANCE;
     }
+
+    //  Forcefully overwrite the instance (2 overloads)
     public static GoBoard MakeInstance()
     {
         _INSTANCE = new GoBoard();
@@ -67,19 +71,75 @@ public class GoBoard
     }
 
 
+    //  Call when the next player has chosen their move
+    //  Play order cannot be broken
     public boolean playMove(int i, int j)
     {
+        //  Play is out of bounds
+        if (i < 0 || i >= s_boardSize ||
+                j < 0 || j >= s_boardSize)
+            return false;
 
+        //  Spot is already claimed
+        if (s_board[i][j] != GoState.Free)
+            return false;
+
+        //  Input is valid
+        if (s_isPlayerOneTurn)
+        {
+            s_board[i][j] = GoState.PlayerOne;
+        }
+
+        else
+        {
+            s_board[i][j] = GoState.PlayerTwo;
+        }
+
+        s_isPlayerOneTurn = !s_isPlayerOneTurn;
         return true;
     }
 
 
+    //  Render the board
     public void drawBoard(GraphicsContext context)
     {
-        context.getCanvas().getHeight();
-        context.getCanvas().getWidth();
+        double h = context.getCanvas().getHeight();
+        double w = context.getCanvas().getWidth();
 
-        context.setFill(Color.AQUA);
-        context.fillRect(0, 0, 100, 100);
+        double dh = h / (double)s_boardSize;
+        double dw = w / (double)s_boardSize;
+
+        double x;
+        double y;
+
+        context.setFill(Color.WHITE);
+        context.setStroke(Color.BLACK);
+
+        y = 0;
+
+        while (y < h)
+        {
+            x = 0;
+
+            while (x < w)
+            {
+                int i = (int)x / (int)dw;
+                int j = (int)y / (int)dh;
+
+                if (s_board[i][j] == GoState.PlayerOne)
+                    context.setFill(Color.NAVY);
+                else if (s_board[i][j] == GoState.PlayerTwo)
+                    context.setFill(Color.DARKRED);
+                else
+                    context.setFill(Color.WHITE);
+
+                context.strokeRect(x, y, dw, dh);
+                context.fillRect(x, y, dw, dh);
+
+                x += dw;
+            }
+
+            y += dh;
+        }
     }
 }
