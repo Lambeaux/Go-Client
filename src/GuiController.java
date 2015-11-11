@@ -17,8 +17,11 @@ public class GuiController
     @FXML
     void goCanvas_mouseClicked(MouseEvent event)
     {
-        double x = event.getSceneX();
-        double y = event.getSceneY();
+        if (goBoard == null)
+            goBoard = GoBoard.GetInstance();
+
+        double x = event.getSceneX() - goCanvas.getLayoutX();
+        double y = event.getSceneY() - goCanvas.getLayoutY();
 
         double h = goCanvas.getHeight();
         double w = goCanvas.getWidth();

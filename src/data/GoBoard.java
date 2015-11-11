@@ -132,12 +132,15 @@ public class GoBoard
                 int i = (int)x / (int)dw;
                 int j = (int)y / (int)dh;
 
-                if (s_board[i][j] == GoState.PlayerOne)
-                    context.setFill(Color.NAVY);
-                else if (s_board[i][j] == GoState.PlayerTwo)
-                    context.setFill(Color.DARKRED);
-                else
-                    context.setFill(Color.WHITE);
+                if (i < s_boardSize && j < s_boardSize)
+                {
+                    if (s_board[i][j] == GoState.PlayerOne)
+                        context.setFill(Color.NAVY);
+                    else if (s_board[i][j] == GoState.PlayerTwo)
+                        context.setFill(Color.DARKRED);
+                    else
+                        context.setFill(Color.WHITE);
+                }
 
                 context.strokeRect(x, y, dw, dh);
                 context.fillRect(x, y, dw, dh);
