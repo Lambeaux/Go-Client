@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="734.0" prefWidth="1254.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="738.0" prefWidth="1251.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GuiController">
    <top>
       <MenuBar prefHeight="38.0" prefWidth="1254.0" BorderPane.alignment="CENTER">
         <menus>
@@ -34,4 +34,26 @@
             <Insets left="10.0" />
          </BorderPane.margin></Canvas>
    </left>
+   <right>
+      <VBox prefHeight="696.0" prefWidth="247.0" style="-fx-border-color: #999999; -fx-background-color: #EEEEEE;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets right="25.0" />
+         </BorderPane.margin>
+         <children>
+            <TextField fx:id="txtBoardSize" prefHeight="5.0" prefWidth="225.0">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onMouseClicked="#btnNewGame_Clicked" prefHeight="31.0" prefWidth="149.0" text="New Game">
+               <VBox.margin>
+                  <Insets left="40.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

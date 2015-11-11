@@ -1,16 +1,18 @@
 package data;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  * Created by Lambeaux on 11/10/2015.
  * Define the data structure for a variable-sized
- * playing board.
+ * playing board. Singleton for simple GUI access.
  *
  */
 public class GoBoard
 {
     private static final int DEFAULT_SIZE = 19;
+    private static GoBoard _INSTANCE = null;
 
     private GoState[][] s_board;
     private int s_boardSize;
@@ -28,17 +30,42 @@ public class GoBoard
                 s_board[i][j] = GoState.Free;
     }
 
-    public GoBoard()
+
+    protected GoBoard()
     {
         s_boardSize = DEFAULT_SIZE;
         InitializeBoard();
     }
-
-    public GoBoard(int p_size)
+    protected GoBoard(int p_size)
     {
         s_boardSize = p_size;
         InitializeBoard();
     }
+
+
+    public static GoBoard GetInstance()
+    {
+        if (_INSTANCE == null)
+            _INSTANCE = new GoBoard();
+        return _INSTANCE;
+    }
+    public static GoBoard GetInstance(int boardSize)
+    {
+        if (_INSTANCE == null)
+            _INSTANCE = new GoBoard(boardSize);
+        return _INSTANCE;
+    }
+    public static GoBoard MakeInstance()
+    {
+        _INSTANCE = new GoBoard();
+        return _INSTANCE;
+    }
+    public static GoBoard MakeInstance(int boardSize)
+    {
+        _INSTANCE = new GoBoard(boardSize);
+        return _INSTANCE;
+    }
+
 
     public boolean playMove(int i, int j)
     {
@@ -46,8 +73,13 @@ public class GoBoard
         return true;
     }
 
+
     public void drawBoard(GraphicsContext context)
     {
+        context.getCanvas().getHeight();
+        context.getCanvas().getWidth();
 
+        context.setFill(Color.AQUA);
+        context.fillRect(0, 0, 100, 100);
     }
 }
