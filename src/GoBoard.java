@@ -1,7 +1,6 @@
-package data;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+
 
 /**
  * Created by Lambeaux on 11/10/2015.
@@ -101,6 +100,10 @@ public class GoBoard
         {
             s_board[i][j] = GoState.PlayerTwo;
         }
+
+        //  Check for dead stones
+        RSR recursiveStoneRemover =
+                new RSR(s_board, s_boardSize);
 
         s_isPlayerOneTurn = !s_isPlayerOneTurn;
         return true;
