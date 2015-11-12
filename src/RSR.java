@@ -55,48 +55,48 @@ public class RSR
         // CHECK LEFT:
         if (i != 0 && d != RDir.Right)
         {
-            if (board[i][j] == player)
+            if (board[i - 1][j] == player)
             {
                 if (isAlive(i - 1, j, RDir.Left))
                     return true;
             }
-            else if (board[i][j] == GoState.Free)
+            else if (board[i - 1][j] == GoState.Free)
                 return true;
         }
 
         // CHECK UP:
         if (j != 0 && d != RDir.Down)
         {
-            if (board[i][j] == player)
+            if (board[i][j - 1] == player)
             {
                 if (isAlive(i, j - 1, RDir.Up))
                     return true;
             }
-            else if (board[i][j] == GoState.Free)
+            else if (board[i][j - 1] == GoState.Free)
                 return true;
         }
 
         // CHECK RIGHT:
         if (i != boardSize && d != RDir.Left)
         {
-            if (board[i][j] == player)
+            if (board[i + 1][j] == player)
             {
                 if (isAlive(i + 1, j, RDir.Right))
                     return true;
             }
-            else if (board[i][j] == GoState.Free)
+            else if (board[i + 1][j] == GoState.Free)
                 return true;
         }
 
         // CHECK DOWN:
         if (i != boardSize && d != RDir.Up)
         {
-            if (board[i][j] == player)
+            if (board[i][j + 1] == player)
             {
                 if (isAlive(i, j + 1, RDir.Down))
                     return true;
             }
-            else if (board[i][j] == GoState.Free)
+            else if (board[i][j + 1] == GoState.Free)
                 return true;
         }
 
