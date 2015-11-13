@@ -1,5 +1,4 @@
 import javafx.util.Pair;
-
 import java.util.ArrayList;
 
 /**
@@ -53,7 +52,7 @@ public class RSR
         checkList.add(p);
 
         // CHECK LEFT:
-        if (i != 0 && d != RDir.Right)
+        if (i > 0 && d != RDir.Right)
         {
             if (board[i - 1][j] == player)
             {
@@ -65,7 +64,7 @@ public class RSR
         }
 
         // CHECK UP:
-        if (j != 0 && d != RDir.Down)
+        if (j > 0 && d != RDir.Down)
         {
             if (board[i][j - 1] == player)
             {
@@ -77,7 +76,7 @@ public class RSR
         }
 
         // CHECK RIGHT:
-        if (i != boardSize && d != RDir.Left)
+        if (i < boardSize - 1 && d != RDir.Left)
         {
             if (board[i + 1][j] == player)
             {
@@ -89,7 +88,7 @@ public class RSR
         }
 
         // CHECK DOWN:
-        if (i != boardSize && d != RDir.Up)
+        if (j < boardSize - 1 && d != RDir.Up)
         {
             if (board[i][j + 1] == player)
             {
